@@ -23,11 +23,14 @@ public:
 
 	void Init();
 	bool Update();
+  void EnableLightSensor();
+  void DisableLightSensor();
 
 private:
 	StripManager *_stripManager;
 	AmbientLight *_ambientLight;
 	uint8_t _currentBrightness;
+  bool _useLightSensor;
 };
 
 #endif

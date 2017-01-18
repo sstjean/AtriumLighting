@@ -16,7 +16,7 @@ uint32_t FireEffect::GetColor(int virtualLedIndex)
 	float level1Value = _fireLevels[levelIndex].GetNormalizedValue();
 
 	uint8_t r = ScaleValue(level1Value, 64, 128); // 64-128 is based on a max brightness of 128 (i.e. actual max = 32-64)
-	uint8_t g = r * 0.55;
+	uint8_t g = r * 0.40; //0.55;
 	uint8_t b = g * 0.2;
 
 	return Support::ComposeColor(r, g, b);
