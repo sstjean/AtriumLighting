@@ -16,6 +16,11 @@ AmbientLight::AmbientLight(uint8_t photoResistorPin, int lowTwilight, int highTw
 
 void AmbientLight::Update()
 {
+  //SSJ - 6-Jan-2017 - Short-circuit the light sensor code.  Always show as DARK.
+  //Serial.println("Ambient light forced to DARK");
+  //_currentState = AmbientLightState::Dark;
+	//SetCurrentStableState(_currentState);
+  
 	unsigned long currentTime = millis();
 
 	unsigned long duration;
@@ -61,6 +66,8 @@ void AmbientLight::Update()
 			{
 				_twilightFactor = CalculateTwilightFactor();
 			}
+        Serial.print("Twilight factor: ");
+        Serial.println(_twilightFactor);
 		}
 		else if (_isStable || (_switchingToState != momentaryState))
 		{
