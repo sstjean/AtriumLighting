@@ -20,7 +20,7 @@
 // The photo resistor pin
 #define PIN_PHOTO_RESISTOR	A5
 
-/*
+
 //=====================================================
 //  LCD Touchscreen information
 //-----------------------------------------------------
@@ -28,9 +28,8 @@
 #define LCD_CD A2 // Command/Data goes to Analog 2
 #define LCD_WR A1 // LCD Write goes to Analog 1
 #define LCD_RD A0 // LCD Read goes to Analog 0
-
 #define LCD_RESET A4 // Can alternately just connect to Arduino's reset pin
-*/
+
 
 // Assign human-readable names to some common 16-bit color values:
 #define  BLACK   0x0000
@@ -65,20 +64,23 @@
 #define ILI9341_PINK        0xF81F
 
 /******************* UI details */
-#define BUTTON_X 40
-#define BUTTON_Y 100
-#define BUTTON_W 60
-#define BUTTON_H 30
-#define BUTTON_SPACING_X 20
+#define BUTTON_X 120
+#define BUTTON_Y 40
+#define BUTTON_W_SM 60
+#define BUTTON_H_SM 30
+#define BUTTON_W_LG 210
+#define BUTTON_H_LG 60
+#define BUTTON_SPACING_X 10
 #define BUTTON_SPACING_Y 20
-#define BUTTON_TEXTSIZE 2
+#define BUTTON_TEXTSIZE_SM 2
+#define BUTTON_TEXTSIZE_LG 3
 
-/*
+
 #define YP A3  // must be an analog pin, use "An" notation!
 #define XM A2  // must be an analog pin, use "An" notation!
 #define YM 9   // can be a digital pin
 #define XP 8   // can be a digital pin
-*/
+
 
 //Touch For New ILI9341 TP
 #define TS_MINX 120
@@ -86,6 +88,11 @@
 
 #define TS_MINY 70
 #define TS_MAXY 920
+
+#define MINPRESSURE 10
+#define MAXPRESSURE 1000
+
+
 //=====================================================
 // LED information
 //-----------------------------------------------------

@@ -66,8 +66,8 @@ void AmbientLight::Update()
 			{
 				_twilightFactor = CalculateTwilightFactor();
 			}
-        Serial.print("Twilight factor: ");
-        Serial.println(_twilightFactor);
+        //Serial.print("Twilight factor: ");
+        //Serial.println(_twilightFactor);
 		}
 		else if (_isStable || (_switchingToState != momentaryState))
 		{

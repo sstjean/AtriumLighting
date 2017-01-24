@@ -18,13 +18,13 @@ void StripBrightnessManager::Init()
 
 void StripBrightnessManager::EnableLightSensor(){
   _useLightSensor = true;
-  Serial.println("Using light sensor: ");
+  //Serial.println("Using light sensor: ");
   return;
 }
 
 void StripBrightnessManager::DisableLightSensor(){
   _useLightSensor = false;
-  Serial.println("Not using light sensor: ");
+  //Serial.println("Not using light sensor: ");
   return;
 }
 
