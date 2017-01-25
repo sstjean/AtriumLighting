@@ -14,7 +14,7 @@
 
 // The set of available effects:
 FireEffect _fireEffect;
-//ChristmasEffect _christmasEffect;
+ChristmasEffect _christmasEffect;
 
 // The current effect:
 Effect *_currentEffect;
@@ -24,6 +24,9 @@ StripManager *_stripManager = new TwoStripManager();
 AmbientLight *_ambientLight = new AmbientLight(PIN_PHOTO_RESISTOR, TWILIGHT_LOW, TWILIGHT_HIGH);
 StripBrightnessManager *_stripBrightnessManager = new StripBrightnessManager(_stripManager, _ambientLight);
 
+bool _currentlyOn = false;
+bool _needToTurnOff = false;
+bool _needToTurnOn = false;
 
 Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
@@ -135,21 +138,65 @@ void loop()
 
     if (buttons[b].justPressed()) {
         buttons[b].drawButton(true);  // draw invert!
-        if (buttons[0].justPressed()) Serial.println("Turned on");
-        if (buttons[1].justPressed()) Serial.println("Turned off");
-        if (buttons[2].justPressed()) Serial.println("Candle effect");
-        if (buttons[3].justPressed()) Serial.println("Christmas effect");
+        if (buttons[0].justPressed()) 
+        {
+          _currentlyOn = true;
+          _needToTurnOff = false;
+          _needToTurnOn = true;
+          Serial.println("Turning on");
+        }
+        if (buttons[1].justPressed())
+        {
+          _currentlyOn = false;
+          _needToTurnOff = true;
+          _needToTurnOn = false;
+          Serial.println("Turning off");
+        }
+        
+        if (buttons[2].justPressed())
+        {
+          _currentEffect = &_fireEffect;
+          Serial.println("Candle effect");
+        }
+        
+        if (buttons[3].justPressed())
+        {
+          _currentEffect = &_christmasEffect;
+          Serial.println("Christmas effect");
+        }
 
     }
   }
 
- delay(100);
+ //delay(100);
 
   ///////////////////////////////////////
   //
   //    Update Lights
   //
   ///////////////////////////////////////
+  if (_needToTurnOff)
+  {
+    Serial.println("Turned off");
+    _stripManager->TurnOff();
+    _needToTurnOff = false;
+  }
+
+  if (_needToTurnOn)
+  {
+    Serial.println("Turned on");
+    _stripBrightnessManager->Update();
+    _stripManager->TurnOn();
+    Serial.print("Current brightness: "); Serial.println(_stripBrightnessManager->GetBrightness());
+    _needToTurnOn = false;
+  }
+  
+  if (!_currentlyOn)
+  {
+    //The controller is set to Off
+    return;
+  }
+ 
 	if (!_stripBrightnessManager->Update())
 	{
 		// The strip is OFF.

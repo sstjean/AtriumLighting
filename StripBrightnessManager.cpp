@@ -28,6 +28,11 @@ void StripBrightnessManager::DisableLightSensor(){
   return;
 }
 
+int StripBrightnessManager::GetBrightness()
+{
+  return _currentBrightness;
+}
+
 bool StripBrightnessManager::Update()
 {  
   AmbientLightState ambientLightState;

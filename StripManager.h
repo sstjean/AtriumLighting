@@ -17,7 +17,9 @@ class StripManager
 public:
 	virtual void Init() { };
 	virtual void SetBrightness(uint8_t brightness) { };
-	
+  virtual void TurnOff(){};
+  virtual void TurnOn(){};
+  
 	void ApplyEffect(Effect *effect);
 
 protected:

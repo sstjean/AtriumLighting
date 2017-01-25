@@ -37,6 +37,16 @@ void TwoStripManager::Init()
   SetBrightness(0);
 }
 
+void TwoStripManager::TurnOff()
+{
+  SetBrightness(0);
+}
+
+void TwoStripManager::TurnOn()
+{
+  SetBrightness(164);
+}
+
 void TwoStripManager::SetBrightness(uint8_t brightness)
 {
 	_strip1.setBrightness(brightness);

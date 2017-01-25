@@ -25,6 +25,7 @@ public:
 	bool Update();
   void EnableLightSensor();
   void DisableLightSensor();
+  int GetBrightness();
 
 private:
 	StripManager *_stripManager;
